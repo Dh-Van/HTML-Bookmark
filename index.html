@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>McMaster-Carr Save Button Setup</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; padding: 2em; max-width: 650px; margin: auto; }
+        h1 { color: #333; }
+        .instructions { border: 1px solid #ddd; padding: 1em; border-radius: 8px; background-color: #f9f9f9; }
+        .drag-button {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: move;
+            border: 2px dashed #0056b3;
+        }
+        .drag-button:hover { background-color: #0056b3; }
+        code { background: #eee; padding: 2px 4px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <h1>McMaster-Carr HTML Saver Setup</h1>
+    <div class="instructions">
+        <h2>Instructions for Users:</h2>
+        <p><b>Step 1:</b> Make sure your bookmarks bar is visible. If you don't see it below your address bar, press <code>Ctrl+Shift+B</code> (on Windows/Chrome) or <code>Cmd+Shift+B</code> (on Mac).</p>
+        <p><b>Step 2:</b> Click and drag the blue button below up to your bookmarks bar and release it. </p>
+        <p style="text-align: center; margin-top: 2em;">
+            <a class="drag-button" href="javascript:(()=>{const iframe=document.querySelector('#SpecFrame');if(!iframe){alert('Could not find the McMaster-Carr product iframe! Make sure you are on a product page.');return;}const html=iframe.contentDocument.documentElement.outerHTML;const partNumEl=document.querySelector('.part-number-and-spec-header--part-number');const partNum=partNumEl?partNumEl.innerText.trim():'content';const blob=new Blob([html],{type:'text/html'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`${partNum}.html`;document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);})();">Save McMaster HTML</a>
+        </p>
+    </div>
+    <hr style="margin-top: 2em;">
+    <h2>How to Use It:</h2>
+    <p>1. Navigate to any product page on the McMaster-Carr website.</p>
+    <p>2. Click the "Save McMaster HTML" button you just added to your bookmarks bar.</p>
+    <p>3. The clean HTML from the specifications table will be saved to your Downloads folder, automatically named with the product's part number.</p>
+</body>
+</html>
