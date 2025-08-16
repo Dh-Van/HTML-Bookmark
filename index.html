@@ -29,7 +29,24 @@
         <p><b>Step 1:</b> Make sure your bookmarks bar is visible. If you don't see it below your address bar, press <code>Ctrl+Shift+B</code> (on Windows/Chrome) or <code>Cmd+Shift+B</code> (on Mac).</p>
         <p><b>Step 2:</b> Click and drag the green button below up to your bookmarks bar and release it. </p>
         <p style="text-align: center; margin-top: 2em;">
-            <a class="drag-button" href="javascript:(()=>{const html=document.documentElement.outerHTML;const partNumEl=document.querySelector('.part-number-and-spec-header--part-number');const fileName=partNumEl?partNumEl.innerText.trim():document.title;const blob=new Blob([html],{type:'text/html'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`${fileName}.html`;document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);})();">Save Full Page HTML</a>
+            <a class="drag-button" href="javascript:(()=>{
+  const html = document.documentElement.outerHTML;
+  const partNumEl = document.querySelector('.part-number-and-spec-header--part-number');
+  const fileName = partNumEl ? partNumEl.innerText.trim() : document.title;
+
+  // Regular expression to find and remove all <script> tags (case-insensitive and global)
+  const htmlWithoutScripts = html.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+
+  const blob = new Blob([htmlWithoutScripts], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${fileName}.html`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+})();">Save HTML (No Scripts)</a>
         </p>
     </div>
     <hr style="margin-top: 2em;">
